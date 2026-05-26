@@ -1,3 +1,6 @@
+//RUN THIS IN BROWSER TO GET ALIEN OUTPUT:
+//http://localhost:8080/addAlien?aid=101&aname=Sanya
+
 package com.telusko.SpringBootWeb1;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,23 +21,28 @@ public class HomeController {
         return "index";
     }
 
-    @RequestMapping("add")
+    @RequestMapping("addAlien")
 //    public String add(HttpServletRequest req , HttpSession session){
 
-        public ModelAndView add(@RequestParam("num1") int num, int num2  , Model model){
+        public ModelAndView addAlien(@RequestParam("aid") int aid,@RequestParam("aname") String aname  , ModelAndView model){
 
 
 //        int num1 = Integer.parseInt(req.getParameter("num1"));
 //        int num2 = Integer.parseInt(req.getParameter("num2"));
-          int result = num + num2 + 12;
+//          int result = num + num2 + 12;
 
 //        session.setAttribute("result",result);
 
 //        model.addAttribute("result" , result);
 
+        Alien alien = new Alien();
+        alien.setAid(aid);
+        alien.setAname(aname);
+
         // Create ModelAndView object
-        ModelAndView mv = new ModelAndView();
-        mv.addObject("result" , result);
+       ModelAndView mv = new ModelAndView();
+
+        mv.addObject("alien" , alien);
         mv.setViewName("result");
 
 //        System.out.println(result);
